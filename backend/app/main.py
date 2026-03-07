@@ -25,3 +25,7 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 @app.get("/users", response_model=list[schemas.UserResponse])
 def read_users(db: Session = Depends(get_db)):
     return crud.get_users(db)
+
+@app.get("/")
+def root():
+    return {"message": "Cloud Native DevOps Platform Running"}
