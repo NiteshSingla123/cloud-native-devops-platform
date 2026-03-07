@@ -1,9 +1,10 @@
+import osd
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-DATABASE_URL = "postgresql://postgres:postgres123@localhost:5432/devops_platform_db"
-
+DATABASE_URL = os.getenv("DATABASE_URL")
 engine = create_engine(DATABASE_URL)
 
 SessionLocal = sessionmaker(
