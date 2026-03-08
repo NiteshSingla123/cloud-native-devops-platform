@@ -44,3 +44,12 @@ jobs:
     - name: Push Docker Image
       run: |
         docker push ${{ secrets.nitesh232003 }}/fastapi-app:latest
+      
+    
+    - name: Pull Image From Registry
+      run: |
+        docker pull ${{ secrets.nitesh232003 }}/fastapi-app:latest
+
+    - name: Run Container
+      run: |
+        docker run -d -p 8000:8000 ${{ secrets.nitesh232003 }}/fastapi-app:latest
