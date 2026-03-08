@@ -29,8 +29,18 @@ jobs:
     - name: Run Tests
       run: |
         echo "No tests implemented yet"
+    
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.nitesh232003 }}
+        password: ${{ secrets.niteshpassword }}
 
     
     - name: Build Docker Image
       run: |
-        docker build -t fastapi-app ./backend
+        docker build -t ${{ secrets.nitesh232003 }}/fastapi-app:latest ./backend
+
+    - name: Push Docker Image
+      run: |
+        docker push ${{ secrets.nitesh232003 }}/fastapi-app:latest
