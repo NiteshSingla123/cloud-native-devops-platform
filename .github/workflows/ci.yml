@@ -56,11 +56,11 @@ jobs:
     
     - name: Build Docker Image
       run: |
-        docker build -t niteshsingla/devops-api:latest \
-        -t niteshsingla/devops-api:sha-${{ steps.vars.outputs.sha }} .
+        docker build -t niteshsingla232003/devops-api:latest \
+        -t niteshsingla232003/devops-api:sha-${{ steps.vars.outputs.sha }} .
 
     - name: Push Docker Image
       run: |
-        docker push ${{ secrets.nitesh232003 }}/devops-api:latest
-        docker push ${{ secrets.nitesh232003 }}/devops-api:sha-${{ steps.vars.outputs.sha }}
+        docker push niteshsingla232003/devops-api:latest
+        docker push niteshsingla232003/devops-api:sha-${{ steps.vars.outputs.sha }}
     
