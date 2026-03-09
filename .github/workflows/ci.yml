@@ -57,7 +57,7 @@ jobs:
 
     
     - name: Build Docker Image
-        run: |
+        run:|
           docker build -f backend/Dockerfile \
           -t niteshsingla232003/devops-api:latest \
           -t niteshsingla232003/devops-api:sha-${{ steps.vars.outputs.sha }} \
