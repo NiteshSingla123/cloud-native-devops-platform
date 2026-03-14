@@ -68,3 +68,19 @@ jobs:
         docker push niteshsingla232003/devops-api:latest
         docker push niteshsingla232003/devops-api:sha-${{ steps.vars.outputs.sha }}
     
+
+deploy:
+runs-on: ubuntu-latest
+needs: build
+
+steps:
+- name: Deploy to EC2
+  uses: appleboy/ssh-action@v1.0.3
+  with:
+    host: ${{ secrets.EC2_HOST }}
+    username: ubuntu
+    key: ${{ secrets.EC2_SSH_KEY }}
+    script: |
+      cd devops-platform
+      docker-compose pull
+      docker-compose up -d 
