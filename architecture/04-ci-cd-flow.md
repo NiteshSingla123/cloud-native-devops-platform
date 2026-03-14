@@ -30,3 +30,27 @@ GitHub Actions
 | Build | Create container image  |
 | Push  | Store image in registry |
 | Pull  | Deploy new version      |
+
+
+
+After Automation our CICD looks like this 
+
+workflow
+│
+├── on
+│     ├── push
+│     └── pull_request
+│
+└── jobs
+      │
+      ├── test
+      │      run pytest
+      │
+      ├── build
+      │      build docker image
+      │      push to dockerhub
+      │
+      └── deploy
+             ssh to EC2
+             docker-compose pull
+             docker-compose up -d
