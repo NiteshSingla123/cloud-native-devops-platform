@@ -4,36 +4,47 @@ services:
 
   postgres:
     image: postgres:15
-    container_name: postgres_db
-    restart: always
+    restart: unless-stopped
     env_file:
       - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+    networks:
+      - devops_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   backend:
-    build: ./backend
-    container_name: fastapi_backend
-    restart: always
+    image: niteshsingla232003/devops-api:latest
+    restart: unless-stopped
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     env_file:
       - .env
     ports:
       - "8000:8000"
-  
+    networks:
+      - devops_network
+
   nginx:
     image: nginx:latest
-    container_name: nginx_proxy
-    restart: always
+    restart: unless-stopped
+    depends_on:
+      - backend
     ports:
       - "80:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - backend
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - devops_network
 
 volumes:
   postgres_data:
+
+networks:
+  devops_network:
+    driver: bridge

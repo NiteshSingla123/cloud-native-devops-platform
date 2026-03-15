@@ -135,6 +135,8 @@ resource "aws_instance" "devops_server" {
   associate_public_ip_address = true
   key_name = aws_key_pair.nitesh_devops_key.key_name
 
+  user_data = file("${path.module}/user_data.sh")
+
   tags = {
     Name = "nitesh-devops-ec2-server"
   }
@@ -147,4 +149,17 @@ resource "aws_key_pair" "nitesh_devops_key" {
   tags = {
     Name = "nitesh-devops-key"
   }
+}
+
+resource "aws_eip" "devops_eip" {
+  domain = "vpc"
+
+  tags = {
+    Name = "nitesh-devops-elastic-ip"
+  }
+}
+
+resource "aws_eip_association" "devops_eip_assoc" {
+  instance_id   = aws_instance.devops_server.id
+  allocation_id = aws_eip.devops_eip.id
 }

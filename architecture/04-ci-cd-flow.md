@@ -54,3 +54,28 @@ workflow
              ssh to EC2
              docker-compose pull
              docker-compose up -d
+
+
+Our CICD what we want as final  
+
+Developer Push
+      ↓
+GitHub Actions
+      ↓
+Run Tests
+      ↓
+Build Docker Image
+      ↓
+Push Image → DockerHub
+      ↓
+Terraform Apply
+      ↓
+Create / Update AWS Infrastructure
+      ↓
+EC2 Bootstraps Itself
+      ↓
+Install Docker + Docker Compose
+      ↓
+Pull Image
+      ↓
+Run Containers
