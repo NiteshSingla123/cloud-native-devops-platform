@@ -82,6 +82,6 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd devops-platform
+            cd /home/ubuntu/devops-platform
             docker-compose pull
             docker-compose up -d
