@@ -41,3 +41,5 @@ Docker Compose	        Service orchestration
 Nginx	                Reverse proxy
 FastAPI	                Backend application
 PostgreSQL	            Database
+
+example
