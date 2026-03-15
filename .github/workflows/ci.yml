@@ -84,5 +84,6 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd /home/ubuntu/devops-platform
+            docker-compose down
             docker-compose pull
             docker-compose up -d
