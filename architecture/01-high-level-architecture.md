@@ -43,3 +43,42 @@ FastAPI	                Backend application
 PostgreSQL	            Database
 
 example
+
+
+
+## The final architecture of the pipeline
+
+Developer writes code
+        │
+        ▼
+Push to GitHub
+        │
+        ▼
+GitHub Actions CI Pipeline
+        │
+        ▼
+Run Tests
+        │
+        ▼
+Build Docker Image
+        │
+        ▼
+Push Image to DockerHub
+        │
+        ▼
+Deploy Pipeline
+        │
+        ▼
+SSH into EC2
+        │
+        ▼
+docker-compose pull
+        │
+        ▼
+docker-compose up -d
+        │
+        ▼
+Containers Running
+        │
+        ▼
+Application Live
