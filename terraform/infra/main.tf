@@ -163,3 +163,4 @@ resource "aws_eip_association" "devops_eip_assoc" {
   instance_id   = aws_instance.devops_server.id
   allocation_id = aws_eip.devops_eip.id
 }
+
