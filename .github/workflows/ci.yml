@@ -83,8 +83,14 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
-            cd /home/ubuntu/cloud-native-devops-platform
-            git pull origin main
-            docker-compose down
-            docker-compose pull
-            docker-compose up -d
+            if [ ! -d "/home/ubuntu/cloud-native-devops-platform" ]; then
+                git clone https://github.com/NiteshSingla123/cloud-native-devops-platform.git /home/ubuntu/cloud-native-devops-platform
+            fi
+
+              cd /home/ubuntu/cloud-native-devops-platform
+
+              git pull origin main
+
+              docker compose down
+              docker compose pull
+              docker compose up -d
