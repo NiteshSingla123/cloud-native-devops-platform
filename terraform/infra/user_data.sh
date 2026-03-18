@@ -1,20 +1,20 @@
 #!/bin/bash
+set -e
 
 # Update packages
-sudo apt update -y
+apt update -y
 
-# Install Docker
-sudo apt install -y docker.io
+# Install dependencies
+apt install -y docker.io docker-compose git
 
-# Install Docker Compose
-sudo apt install -y docker-compose
-
-# Install Git
-sudo apt install -y git
-
-# Enable Docker
-sudo systemctl enable docker
-sudo systemctl start docker
+# Start and enable Docker
+systemctl start docker
+systemctl enable docker
 
 # Allow ubuntu user to run docker
-sudo usermod -aG docker ubuntu
+usermod -aG docker ubuntu
+
+# Verify installations
+docker --version
+docker-compose --version
+git --version
